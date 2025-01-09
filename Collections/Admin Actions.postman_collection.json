@@ -1,0 +1,132 @@
+{
+	"info": {
+		"_postman_id": "f8305971-ebcb-403b-b922-4e5b3c516ddb",
+		"name": "Admin Actions",
+		"description": "Collection for Car Rental API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30888151"
+	},
+	"item": [
+		{
+			"name": "Add Car",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer <your_token>",
+						"type": "text"
+					},
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{xsrf-token}}",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "New Car",
+							"type": "text"
+						},
+						{
+							"key": "type",
+							"value": "SUV",
+							"type": "text"
+						},
+						{
+							"key": "price_per_day",
+							"value": "50",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "postman-cloud:///1efb63b4-27ba-45a0-8219-76527b30c91a"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/admin/cars",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"admin",
+						"cars"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mark Car Unavailable for Maintenance",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{xsrf-token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/admin/cars/1/maintenance",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"admin",
+						"cars",
+						"1",
+						"maintenance"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"pm.request.headers.add({key: 'X-XSRF-TOKEN', value: pm.environment.get('xsrf-token') })\r",
+					"pm.request.headers.add({key: 'Accept', value: 'application/json' })"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

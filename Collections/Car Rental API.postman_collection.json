@@ -1,0 +1,227 @@
+{
+	"info": {
+		"_postman_id": "7ec3d56b-98f7-4598-a5ec-9e79e4e8f2b9",
+		"name": "Car Rental API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30888151"
+	},
+	"item": [
+		{
+			"name": "List all available cars",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/cars?availability_status=1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"cars"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "Sedan",
+							"description": "Filter by car type",
+							"disabled": true
+						},
+						{
+							"key": "price_min",
+							"value": "77.27",
+							"description": "Minimum price per day",
+							"disabled": true
+						},
+						{
+							"key": "price_max",
+							"value": "77.27",
+							"description": "Maximum price per day",
+							"disabled": true
+						},
+						{
+							"key": "availability_status",
+							"value": "1",
+							"description": "Filter by availability status"
+						},
+						{
+							"key": "name",
+							"value": "vel",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a new order",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "car_id",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "start_date",
+							"value": "2023-00-01",
+							"type": "text"
+						},
+						{
+							"key": "end_date",
+							"value": "2023-01-10",
+							"type": "text"
+						},
+						{
+							"key": "total_price",
+							"value": "500",
+							"type": "text"
+						},
+						{
+							"key": "payment_status",
+							"value": "pending",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/orders",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mark an order as paid",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/orders/:order_id/pay",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"orders",
+						":order_id",
+						"pay"
+					],
+					"variable": [
+						{
+							"key": "order_id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List all orders for a user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/orders?user_id=1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"orders"
+					],
+					"query": [
+						{
+							"key": "user_id",
+							"value": "1",
+							"description": "User ID to filter orders"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Image",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{xsrf-token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/storage/images/6F3A4562.JPG",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"storage",
+						"images",
+						"6F3A4562.JPG"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"pm.request.headers.add({key: 'X-XSRF-TOKEN', value: pm.environment.get('xsrf-token') })\r",
+					"pm.request.headers.add({key: 'Accept', value: 'application/json' })"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
