@@ -24,7 +24,7 @@ This project is a car rental system built with Laravel. It allows users to book 
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/YousefHSS/AbudiyabTask.git
+    git clone https://github.com/yousefhussen/AbudiyabTask.git
     cd AbudiyabTask
     ```
 
