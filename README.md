@@ -14,8 +14,12 @@ This project is a car rental system built with Laravel. It allows users to book 
     - Save the order details, including order_id, user_id, car_id, start_date, end_date, total_price, and payment_status (paid, unpaid).
 - **Cash Payment**: Update the payment_status to paid upon successful cash payment.
 - **Validation**: Validate user input (e.g., start date should be before the end date).
-- **Database Seeding**: Populate the database with at least 10 cars and 5 users (1 admin and 4 normal users).
+- **Database Seeding**: Populate the database with at least 10 cars and 5 users (the admin credentials are "admin@email.com" "password").
 
+## Authentication
+- authentication is done using Laravel's Fortify and Sanctum packages. The system includes two roles: user and admin. The admin can add new cars and mark cars as unavailable for maintenance.
+- it's a simple authentication system that includes login, registration, and logout only.
+- cookie based authentication is used for the web routes and token based authentication is used for the API routes.
 ## Installation
 
 1. Clone the repository:
@@ -54,8 +58,6 @@ This project is a car rental system built with Laravel. It allows users to book 
     ```sh
     php artisan serve
     ```
-
-## API Endpoints
 
 ## API Endpoints
 
